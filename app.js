@@ -24,7 +24,7 @@ const channels = [
   { name: "Euronews FR", stream: "https://server.geyetv.com/euronewsfr/index.m3u8", image: "images/FREuroNewsHD.png" },
   { name: "Cinebox Action", stream: "https://server.geyetv.com/Cinebox-action/index.m3u8", image: "images/cineboxaction.png" },
   { name: "Cinebox Animation", stream: "https://server.geyetv.com/cinebox-animation/index.m3u8", image: "images/CineBoxAnimation.png" },
-  { name: "Francis 24 News", stream: "https://server.geyetv.com/francis24news/index.m3u8", image: "images/GeyeFrance.png" }
+  { name: "France 24 News", stream: "https://server.geyetv.com/francis24news/index.m3u8", image: "images/GeyeFrance.png" }
 ];
 
 const grid = document.getElementById('vidlink');
