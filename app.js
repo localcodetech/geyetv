@@ -64,7 +64,7 @@ function init() {
         li.className = 'channel-item';
         
         li.innerHTML = `
-            <img src="${ch.image}" alt="${ch.name}" onerror="this.src='https://via.placeholder.com/100x50?text=TV'">
+            <img src="${ch.image}" alt="${ch.name}" onerror="this.src='https://i.imgur.com/PRL4asG.jpeg'">
             <p>${ch.name}</p>
         `;
 
