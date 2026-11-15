@@ -59,3 +59,35 @@ export function toggleFavorite(id: string) {
   try { favs = JSON.parse(read(FAV_KEY) ?? "[]"); } catch {}
   write(FAV_KEY, JSON.stringify(favs.includes(id) ? favs.filter((f) => f !== id) : [...favs, id]));
 }
+
+// "My List": movies and series saved for later. Stores enough to render a poster card offline.
+
+const LIST_KEY = "geye:myList";
+
+export type SavedItem = {
+  id: number;
+  type: "movie" | "tv";
+  title: string;
+  year: string;
+  rating: number;
+  posterPath: string | null;
+  backdropPath: string | null;
+  overview: string;
+};
+
+const listRaw = () => read(LIST_KEY) ?? "[]";
+
+/** Saved titles, newest first. Empty while server rendering / hydrating. */
+export function useMyList(): SavedItem[] {
+  const raw = useSyncExternalStore(subscribe, listRaw, () => "[]");
+  return useMemo(() => {
+    try { return JSON.parse(raw) as SavedItem[]; } catch { return []; }
+  }, [raw]);
+}
+
+export function toggleSaved(item: SavedItem) {
+  let items: SavedItem[] = [];
+  try { items = JSON.parse(listRaw()); } catch {}
+  const exists = items.some((i) => i.id === item.id && i.type === item.type);
+  write(LIST_KEY, JSON.stringify(exists ? items.filter((i) => !(i.id === item.id && i.type === item.type)) : [item, ...items]));
+}

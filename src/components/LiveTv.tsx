@@ -130,7 +130,7 @@ export function LiveTv({ lists }: { lists: ChannelLists }) {
                       channel.type === "radio" ? "w-11" : "is-cropped w-20"
                     }`}
                   >
-                    <Image src={channel.logoUrl} alt="" width={160} height={160} className={channel.type === "radio" ? "size-full object-cover" : ""} />
+                    <Image src={channel.logoUrl} alt="" width={160} height={160} unoptimized={!channel.logoUrl.startsWith("/")} className={channel.type === "radio" ? "size-full object-cover" : ""} />
                   </div>
                   <div className="min-w-0">
                     <div className="flex items-center gap-2 text-[11px] font-bold tracking-widest text-brand">

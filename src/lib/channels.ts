@@ -30,6 +30,9 @@ type ContentRow = {
   logo_url: string | null;
 };
 
+// "imgur.com/abc.png" is a page link; the image itself lives on i.imgur.com
+const directImageUrl = (url: string) => url.trim().replace(/^https?:\/\/(www\.)?imgur\.com\//, "https://i.imgur.com/");
+
 async function fromSupabase(url: string, key: string): Promise<Channel[]> {
   const res = await fetch(
     `${url}/rest/v1/content?select=id,category_id,title,stream_url,logo_url&is_live=eq.true&order=created_at`,
@@ -46,7 +49,7 @@ async function fromSupabase(url: string, key: string): Promise<Channel[]> {
       title: r.title,
       category: CATEGORY_TYPES[r.category_id] === "radio" ? "Radio" : "Live TV",
       streamUrl: r.stream_url,
-      logoUrl: r.logo_url ?? "",
+      logoUrl: directImageUrl(r.logo_url ?? ""),
     }));
 }
 

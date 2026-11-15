@@ -1,7 +1,9 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { ActiveMobileNav, MobileNav } from "@/components/NavLinks";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "G-Eye TV: Live TV & Radio",
-  description: "Watch G-Eye TV channels live and listen to G-Eye radio stations.",
+  title: "G-Eye TV: Live TV, Movies & Series",
+  description: "Watch G-Eye TV channels live, listen to G-Eye radio, and discover movies and series.",
   icons: { icon: "/images/geyetv.png" },
 };
 
@@ -30,6 +32,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />
+        <Suspense fallback={<MobileNav pathname={null} />}>
+          <ActiveMobileNav />
+        </Suspense>
       </body>
     </html>
   );

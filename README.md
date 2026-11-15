@@ -29,6 +29,15 @@ Channel lists are cached for about a minute, so changes show up without a redepl
 
 The key is only used on the server. TMDB provides metadata, not video: streaming and downloads will only be added for titles G-Eye TV holds the rights to.
 
+## Free classics
+
+`/movies/free` lists public-domain films from the Internet Archive that can be watched and downloaded on G-Eye TV (`src/lib/archive.ts`).
+
+- Only films released in or before 1954 are included (Ghana protects films for 70 years), plus modern films added by hand to `VERIFIED_MODERN` after checking the creator's licence. Licence labels on archive.org are sometimes wrong for newer uploads.
+- Non-commercial (NC) and no-derivatives (ND) licences are excluded.
+- Titles can be hidden for editorial reasons with `EXCLUDED_TMDB_IDS`.
+- Video files are streamed and downloaded straight from archive.org.
+
 ## Project layout
 
 ```

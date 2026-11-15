@@ -46,6 +46,8 @@ export function ChannelCard({ channel, active, favorite, onSelect }: Props) {
             width={320}
             height={320}
             sizes="(max-width: 640px) 45vw, 240px"
+            // Logos are entered in Supabase and may be on any host; only local ones go through the optimizer
+            unoptimized={!src.startsWith("/")}
             className={`transition-transform duration-300 group-hover:scale-[1.04] ${isRadio ? "size-full rounded-full object-cover" : ""}`}
             onError={() => setSrc(FALLBACK_IMG)}
           />
