@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-brand: #e50914;
+  --color-surface: #0f0f0f;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--color-surface);
+  color: #fff;
+}
+
+/* TV logos are square images with a lot of empty space, crop to the banner in the middle */
+.channel-logo.is-cropped img {
+  position: absolute;
+  width: 139%;
+  max-width: none;
+  height: auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -46%);
+}
+
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+html { scroll-behavior: smooth; }
