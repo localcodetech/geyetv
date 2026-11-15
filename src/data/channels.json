@@ -1,0 +1,233 @@
+[
+  {
+    "id": "g-eye-tv-live",
+    "type": "tv",
+    "title": "G-Eye TV Live",
+    "streamUrl": "https://unda.geyetv.com/hls/geyetv/master.m3u8",
+    "logoUrl": "/images/geyetv.png"
+  },
+  {
+    "id": "g-eye-247-news",
+    "type": "tv",
+    "title": "G-Eye 247 News",
+    "streamUrl": "https://unda.geyetv.com/hls/g-eye247news/index.m3u8",
+    "logoUrl": "/images/G-Eye247News.png"
+  },
+  {
+    "id": "g-eye-afro-cinema",
+    "type": "tv",
+    "title": "G-Eye Afro Cinema",
+    "streamUrl": "https://unda.geyetv.com/hls/g-eyeafrocinema/index.m3u8",
+    "logoUrl": "/images/AFROCINEMA.png"
+  },
+  {
+    "id": "g-eye-kids-zone",
+    "type": "tv",
+    "title": "G-Eye Kids Zone",
+    "streamUrl": "https://unda.geyetv.com/hls/geyetvkidszone/index.m3u8",
+    "logoUrl": "/images/KIDSZONE.png"
+  },
+  {
+    "id": "g-eye-music-plus",
+    "type": "tv",
+    "title": "G-Eye Music Plus",
+    "streamUrl": "https://unda.geyetv.com/hls/geyetvmusicplus/index.m3u8",
+    "logoUrl": "/images/GeyeMusic+.png"
+  },
+  {
+    "id": "g-eye-sports-network",
+    "type": "tv",
+    "title": "G-Eye Sports Network",
+    "streamUrl": "https://unda.geyetv.com/hls/g-eyesportsnetwork/index.m3u8",
+    "logoUrl": "/images/SPORTSNETWORK.png"
+  },
+  {
+    "id": "g-eye-action-hd",
+    "type": "tv",
+    "title": "G-Eye Action HD",
+    "streamUrl": "https://unda.geyetv.com/hls/g-eyeactionh/index.m3u8",
+    "logoUrl": "/images/ACTIONHD.png"
+  },
+  {
+    "id": "g-eye-mission",
+    "type": "tv",
+    "title": "G-Eye Mission",
+    "streamUrl": "https://unda.geyetv.com/hls/g-eyemission/index.m3u8",
+    "logoUrl": "/images/MISSION.png"
+  },
+  {
+    "id": "g-eye-docs",
+    "type": "tv",
+    "title": "G-Eye Docs",
+    "streamUrl": "https://unda.geyetv.com/hls/g-eyedocs/index.m3u8",
+    "logoUrl": "/images/DOCS.png"
+  },
+  {
+    "id": "g-eye-gospel-flow",
+    "type": "tv",
+    "title": "G-Eye Gospel Flow",
+    "streamUrl": "https://unda.geyetv.com/hls/g-eyegospelflow/index.m3u8",
+    "logoUrl": "/images/GOSPELFLOW.png"
+  },
+  {
+    "id": "g-eye-prime-series",
+    "type": "tv",
+    "title": "G-Eye Prime Series",
+    "streamUrl": "https://unda.geyetv.com/hls/g-eyeprimeseries/index.m3u8",
+    "logoUrl": "/images/PRIMESERIES.png"
+  },
+  {
+    "id": "g-eye-extra",
+    "type": "tv",
+    "title": "G-Eye Extra",
+    "streamUrl": "https://unda.geyetv.com/hls/g-eyetv-extra/index.m3u8",
+    "logoUrl": "/images/Extra.png"
+  },
+  {
+    "id": "g-eye-wild",
+    "type": "tv",
+    "title": "G-Eye Wild",
+    "streamUrl": "https://unda.geyetv.com/hls/g-eyewild/index.m3u8",
+    "logoUrl": "/images/WILD.png"
+  },
+  {
+    "id": "g-eye-cine-afrique",
+    "type": "tv",
+    "title": "G-Eye Cine Afrique",
+    "streamUrl": "https://unda.geyetv.com/hls/g-eyecineafrique/index.m3u8",
+    "logoUrl": "/images/GeyeCinemaAfrique.png"
+  },
+  {
+    "id": "g-eye-cinema-prime",
+    "type": "tv",
+    "title": "G-Eye Cinema Prime",
+    "streamUrl": "https://unda.geyetv.com/hls/g-eyecinemaprime/index.m3u8",
+    "logoUrl": "/images/GeyeCinémaPrime.png"
+  },
+  {
+    "id": "box-office",
+    "type": "tv",
+    "title": "Box Office",
+    "streamUrl": "https://unda.geyetv.com/hls/boxoffice/index.m3u8",
+    "logoUrl": "/images/BoxOffice.png"
+  },
+  {
+    "id": "afro-fuse-hd",
+    "type": "tv",
+    "title": "Afro Fuse HD",
+    "streamUrl": "https://unda.geyetv.com/hls/afrofusehd/index.m3u8",
+    "logoUrl": "/images/afrofuse.png"
+  },
+  {
+    "id": "weather-247",
+    "type": "tv",
+    "title": "Weather 247",
+    "streamUrl": "https://unda.geyetv.com/hls/weather247/index.m3u8",
+    "logoUrl": "/images/Weather247.png"
+  },
+  {
+    "id": "fifa-plus",
+    "type": "tv",
+    "title": "FIFA Plus",
+    "streamUrl": "https://unda.geyetv.com/hls/fifaplus/index.m3u8",
+    "logoUrl": "/images/fifaplus.png"
+  },
+  {
+    "id": "docuseries-crimes",
+    "type": "tv",
+    "title": "Docuseries Crimes",
+    "streamUrl": "https://unda.geyetv.com/hls/docuseriescrimes/index.m3u8",
+    "logoUrl": "/images/DocuSeriesCrime.png"
+  },
+  {
+    "id": "france-24",
+    "type": "tv",
+    "title": "France 24",
+    "streamUrl": "https://unda.geyetv.com/hls/france24/index.m3u8",
+    "logoUrl": "/images/GeyeFrance.png"
+  },
+  {
+    "id": "movie-247",
+    "type": "tv",
+    "title": "Movie 247",
+    "streamUrl": "https://unda.geyetv.com/hls/movie247/index.m3u8",
+    "logoUrl": "/images/movie247.png"
+  },
+  {
+    "id": "euronews-fr",
+    "type": "tv",
+    "title": "Euronews FR",
+    "streamUrl": "https://unda.geyetv.com/hls/euronewsfrench/index.m3u8",
+    "logoUrl": "/images/FREuroNewsHD.png"
+  },
+  {
+    "id": "cinebox-action",
+    "type": "tv",
+    "title": "Cinebox Action",
+    "streamUrl": "https://unda.geyetv.com/hls/cinebox-action/index.m3u8",
+    "logoUrl": "/images/cineboxaction.png"
+  },
+  {
+    "id": "cinebox-animation",
+    "type": "tv",
+    "title": "Cinebox Animation",
+    "streamUrl": "https://unda.geyetv.com/hls/cinebox-animation/index.m3u8",
+    "logoUrl": "/images/CineBoxAnimation.png"
+  },
+  {
+    "id": "france-24-news",
+    "type": "tv",
+    "title": "France 24 News",
+    "streamUrl": "https://unda.geyetv.com/hls/france24french/index.m3u8",
+    "logoUrl": "/images/GeyeFrance.png"
+  },
+  {
+    "id": "g-eye-global-waves",
+    "type": "radio",
+    "title": "G-Eye Global Waves",
+    "streamUrl": "https://radio.geyetv.com/listen/g-eye_global_waves/radio.mp3",
+    "logoUrl": "https://i.imgur.com/wkW66o4.png"
+  },
+  {
+    "id": "g-eye-infinity-radio",
+    "type": "radio",
+    "title": "G-Eye Infinity Radio",
+    "streamUrl": "https://radio.geyetv.com/listen/g-eye_infinity_radio/radio.mp3",
+    "logoUrl": "https://i.imgur.com/cihT0Ig.png"
+  },
+  {
+    "id": "g-eye-power-fm",
+    "type": "radio",
+    "title": "G-Eye Power FM",
+    "streamUrl": "https://radio.geyetv.com/listen/g-eye_power_fm/radio.mp3",
+    "logoUrl": "https://i.imgur.com/5Xk0p2Q.png"
+  },
+  {
+    "id": "g-eye-radio-empire",
+    "type": "radio",
+    "title": "G-Eye Radio Empire",
+    "streamUrl": "https://radio.geyetv.com/listen/g-eye_radio_empire/radio.mp3",
+    "logoUrl": "https://i.imgur.com/CdxG7fB.png"
+  },
+  {
+    "id": "g-eye-supreme-fm",
+    "type": "radio",
+    "title": "G-Eye Supreme FM",
+    "streamUrl": "https://radio.geyetv.com/listen/g-eye_supreme_fm/radio.mp3",
+    "logoUrl": "https://i.imgur.com/emXvmFc.png"
+  },
+  {
+    "id": "gem-radio",
+    "type": "radio",
+    "title": "GEM Radio",
+    "streamUrl": "https://radio.geyetv.com/listen/gem_radio/radio.mp3",
+    "logoUrl": "https://i.imgur.com/wkW66o4.png"
+  },
+  {
+    "id": "g-eye-radio",
+    "type": "radio",
+    "title": "G-Eye Radio",
+    "streamUrl": "https://radio.geyetv.com/listen/geye_radio/radio.mp3",
+    "logoUrl": "https://i.imgur.com/wkW66o4.png"
+  }
+]
