@@ -1,13 +1,22 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import { motion } from "motion/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import type { MovieSummary } from "@/lib/tmdb";
-import { PosterCard } from "@/components/movies/PosterCard";
 
-/** Horizontally scrolling row of movie posters */
-export function PosterRow({ id, title, movies }: { id?: string; title: string; movies: MovieSummary[] }) {
+type Props = {
+  id?: string;
+  title: string;
+  /** "See all" link next to the title */
+  href?: string;
+  /** Tailwind width classes for each item */
+  itemClassName?: string;
+  children: React.ReactNode[];
+};
+
+/** Titled, horizontally scrolling row with arrow buttons on desktop */
+export function ScrollRow({ id, title, href, itemClassName = "w-[36%] sm:w-40 lg:w-44", children }: Props) {
   const scroller = useRef<HTMLDivElement>(null);
 
   const page = (dir: 1 | -1) => {
@@ -24,8 +33,15 @@ export function PosterRow({ id, title, movies }: { id?: string; title: string; m
       transition={{ duration: 0.45, ease: "easeOut" }}
       className="scroll-mt-24"
     >
-      <div className="mb-3 flex items-end justify-between">
-        <h2 className="text-lg font-bold tracking-tight sm:text-xl">{title}</h2>
+      <div className="mb-3 flex items-end justify-between gap-4">
+        <h2 className="text-lg font-bold tracking-tight sm:text-xl">
+          {title}
+          {href && (
+            <Link href={href} className="ml-3 text-sm font-medium text-brand hover:underline">
+              See all ›
+            </Link>
+          )}
+        </h2>
         <div className="hidden gap-1 sm:flex">
           {([-1, 1] as const).map((dir) => (
             <button
@@ -41,9 +57,9 @@ export function PosterRow({ id, title, movies }: { id?: string; title: string; m
         </div>
       </div>
       <div ref={scroller} className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-px-4 px-4 pb-2 pt-1 sm:gap-4">
-        {movies.map((m) => (
-          <div key={m.id} className="w-[36%] shrink-0 snap-start sm:w-40 lg:w-44">
-            <PosterCard movie={m} />
+        {children.map((child, i) => (
+          <div key={i} className={`shrink-0 snap-start ${itemClassName}`}>
+            {child}
           </div>
         ))}
       </div>
