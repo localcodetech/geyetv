@@ -23,5 +23,7 @@ body {
   transform: translate(-50%, -46%);
 }
 
-.thin-scrollbar::-webkit-scrollbar { width: 5px; }
-.thin-scrollbar::-webkit-scrollbar-thumb { background: #444; border-radius: 10px; }
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+html { scroll-behavior: smooth; }

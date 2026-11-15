@@ -73,14 +73,14 @@ export function Player({ channel }: { channel: Channel }) {
   };
 
   return (
-    <div className="relative mb-2.5 aspect-video w-full overflow-hidden rounded-xl bg-black shadow-[0_10px_30px_rgba(0,0,0,0.5)] lg:mb-5">
+    <div className="relative aspect-video w-full overflow-hidden bg-black">
       <video
         ref={videoRef}
         controls
         autoPlay
         playsInline
         poster={channel.type === "radio" ? channel.logoUrl : undefined}
-        className="absolute inset-0 size-full"
+        className="absolute inset-0 size-full object-contain"
         onPlaying={() => setOverlay(null)}
         onWaiting={() => setOverlay(LOADING)}
         onError={() => {

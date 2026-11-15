@@ -8,6 +8,8 @@ export type Channel = {
   id: string;
   type: ChannelType;
   title: string;
+  /** Row the channel is shown in, e.g. "News" or "Radio" */
+  category: string;
   streamUrl: string;
   logoUrl: string;
 };
@@ -42,6 +44,7 @@ async function fromSupabase(url: string, key: string): Promise<Channel[]> {
       id: r.id,
       type: CATEGORY_TYPES[r.category_id],
       title: r.title,
+      category: CATEGORY_TYPES[r.category_id] === "radio" ? "Radio" : "Live TV",
       streamUrl: r.stream_url,
       logoUrl: r.logo_url ?? "",
     }));
