@@ -1,4 +1,6 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
+import { connection } from "next/server";
 import { Gift } from "lucide-react";
 import { getFreeClassics, type FreeTitle } from "@/lib/archive";
 import { isTmdbConfigured } from "@/lib/tmdb";
@@ -11,7 +13,17 @@ export const metadata: Metadata = {
   description: "Classic movies in the public domain. Watch free or download, legally.",
 };
 
-export default async function FreeClassicsPage() {
+export default function FreeClassicsPage() {
+  return (
+    <Suspense fallback={<div className="mx-auto h-[70svh] max-w-350 animate-pulse px-4 pt-10"><div className="size-full rounded-2xl bg-white/5" /></div>}>
+      <FreeClassics />
+    </Suspense>
+  );
+}
+
+/** Loaded at request time (then cached for a day) so builds don't match hundreds of films against TMDB */
+async function FreeClassics() {
+  await connection();
   if (!isTmdbConfigured()) return <TmdbNotice reason="missing-key" />;
 
   let titles: FreeTitle[];
