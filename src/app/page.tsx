@@ -1,37 +1,32 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import { Clapperboard, MonitorPlay, Radio, Tv } from "lucide-react";
-import { getChannels } from "@/lib/channels";
-import { getFreeClassics } from "@/lib/archive";
+import { connection } from "next/server";
+import { getChannels, type ChannelLists } from "@/lib/channels";
 import { getGenres, getHomeRows, isTmdbConfigured, type MediaRow, type MediaSummary } from "@/lib/tmdb";
 import { HeroCarousel } from "@/components/media/HeroCarousel";
 import { PosterRow } from "@/components/media/PosterRow";
 import { LiveNowRow } from "@/components/LiveNowRow";
+import { FreeClassicsRow } from "@/components/media/FreeClassicsRow";
 
 const SECTIONS = [
   { href: "/live", label: "Live TV", sub: "channels", Icon: Tv },
   { href: "/movies", label: "Movies", sub: "Nollywood & more", Icon: Clapperboard },
   { href: "/series", label: "Series", sub: "episodes & seasons", Icon: MonitorPlay },
-  { href: "/live#radio", label: "Radio", sub: "stations", Icon: Radio },
+  { href: "/radio", label: "Radio", sub: "stations", Icon: Radio },
 ];
 
 // Colourful tiles for "Browse by genre"
 const GENRE_COLORS = ["from-rose-600", "from-amber-500", "from-emerald-600", "from-sky-600", "from-violet-600", "from-fuchsia-600", "from-orange-600", "from-teal-600"];
 
-type Catalog = { hero: MediaSummary[]; rows: MediaRow[]; genres: { id: number; name: string }[]; free: MediaSummary[] };
+type Catalog = { hero: MediaSummary[]; rows: MediaRow[]; genres: { id: number; name: string }[] };
 
 async function loadCatalog(): Promise<Catalog> {
-  const empty: Catalog = { hero: [], rows: [], genres: [], free: [] };
+  const empty: Catalog = { hero: [], rows: [], genres: [] };
   if (!isTmdbConfigured()) return empty;
   try {
-    const [{ hero, rows }, genres, free] = await Promise.all([
-      getHomeRows(),
-      getGenres("movie").catch(() => []),
-      getFreeClassics().catch((err) => {
-        console.error("Loading free classics failed:", err);
-        return [];
-      }),
-    ]);
-    return { hero, rows, genres, free };
+    const [{ hero, rows }, genres] = await Promise.all([getHomeRows(), getGenres("movie").catch(() => [])]);
+    return { hero, rows, genres };
   } catch (err) {
     console.error("Loading home catalog failed:", err);
     return empty;
@@ -39,8 +34,23 @@ async function loadCatalog(): Promise<Catalog> {
 }
 
 export default async function Home() {
-  const [channels, { hero, rows, genres, free }] = await Promise.all([getChannels(), loadCatalog()]);
-  const counts: Record<string, number> = { "/live": channels.tv.length, "/live#radio": channels.radio.length };
+  const channels = await getChannels();
+  // The channel-only page is the instant shell; movies and series stream in at request time
+  // (then stay cached), so builds never depend on TMDB being reachable.
+  return (
+    <Suspense fallback={<HomeView channels={channels} catalog={{ hero: [], rows: [], genres: [] }} />}>
+      <HomeWithCatalog channels={channels} />
+    </Suspense>
+  );
+}
+
+async function HomeWithCatalog({ channels }: { channels: ChannelLists }) {
+  await connection();
+  return <HomeView channels={channels} catalog={await loadCatalog()} withCatalog />;
+}
+
+function HomeView({ channels, catalog: { hero, rows, genres }, withCatalog = false }: { channels: ChannelLists; catalog: Catalog; withCatalog?: boolean }) {
+  const counts: Record<string, number> = { "/live": channels.tv.length, "/radio": channels.radio.length };
 
   return (
     <div className="pb-12">
@@ -79,7 +89,11 @@ export default async function Home() {
           <PosterRow key={row.id} id={row.id} title={row.title} href={row.href} items={row.items} />
         ))}
 
-        {free.length > 0 && <PosterRow id="free" title="Free classics · watch now" href="/movies/free" items={free.slice(0, 20)} free />}
+        {withCatalog && isTmdbConfigured() && (
+          <Suspense>
+            <FreeClassicsRow />
+          </Suspense>
+        )}
 
         {genres.length > 0 && (
           <section>
@@ -102,7 +116,7 @@ export default async function Home() {
           <PosterRow key={row.id} id={row.id} title={row.title} href={row.href} items={row.items} />
         ))}
 
-        <LiveNowRow title="Radio stations" channels={channels.radio} href="/live#radio" />
+        <LiveNowRow title="Radio stations" channels={channels.radio} href="/radio" />
       </div>
     </div>
   );

@@ -7,6 +7,8 @@ import { ChevronDown, ChevronUp, Heart, Search, Share2, X } from "lucide-react";
 import type { Channel, ChannelLists } from "@/lib/channels";
 import { saveLastChannel, toggleFavorite, useFavorites, useStartChannelId } from "@/lib/viewer-prefs";
 import { Player } from "@/components/Player";
+import { RadioStage } from "@/components/radio/RadioStage";
+import { useRadio } from "@/components/radio/RadioProvider";
 import { ChannelCard } from "@/components/ChannelCard";
 import { ChannelRow } from "@/components/ChannelRow";
 
@@ -32,6 +34,7 @@ export function LiveTv({ lists }: { lists: ChannelLists }) {
   const [toast, setToast] = useState<string | null>(null);
   const startId = useStartChannelId();
   const favorites = useFavorites();
+  const radio = useRadio();
 
   // Shared link or last channel watched, otherwise the first channel. Nothing plays until hydrated.
   const currentId =
@@ -54,6 +57,8 @@ export function LiveTv({ lists }: { lists: ChannelLists }) {
   const select = (c: Channel) => {
     setPickedId(c.id);
     saveLastChannel(c.id, c.type);
+    // Radio plays through the site-wide radio player; started here because browsers need a tap to play audio
+    if (c.type === "radio") radio.play(c);
   };
 
   const step = (dir: 1 | -1) => {
@@ -81,6 +86,12 @@ export function LiveTv({ lists }: { lists: ChannelLists }) {
       }
     } catch {}
   };
+
+  // Never play the radio over a TV channel
+  const { station: radioStation, stop: stopRadio } = radio;
+  useEffect(() => {
+    if (channel?.type === "tv" && radioStation) stopRadio();
+  }, [channel, radioStation, stopRadio]);
 
   // Keep the active card visible inside its row, without scrolling the page
   useEffect(() => {
@@ -110,7 +121,13 @@ export function LiveTv({ lists }: { lists: ChannelLists }) {
       <section className="sticky top-[57px] z-40 bg-surface/95 backdrop-blur lg:static lg:bg-transparent lg:backdrop-blur-none">
         <div className="mx-auto max-w-[min(1400px,calc((100svh-200px)*16/9))] px-0 sm:px-4 sm:pt-4">
           <div className="overflow-hidden bg-black ring-white/10 sm:rounded-2xl sm:shadow-[0_20px_60px_rgba(0,0,0,0.6)] sm:ring-1">
-            {channel ? <Player key={channel.id} channel={channel} /> : <div className="aspect-video w-full bg-black" />}
+            {!channel ? (
+              <div className="aspect-video w-full bg-black" />
+            ) : channel.type === "radio" ? (
+              <RadioStage station={channel} />
+            ) : (
+              <Player key={channel.id} channel={channel} />
+            )}
           </div>
 
           {/* Now playing */}

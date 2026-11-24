@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "motion/react";
-import { Bookmark, Clapperboard, House, MonitorPlay, Search, Tv } from "lucide-react";
+import { Bookmark, Clapperboard, House, MonitorPlay, Radio, Tv } from "lucide-react";
 
 export const NAV = [
   { label: "Home", href: "/", Icon: House },
   { label: "Live TV", href: "/live", Icon: Tv },
   { label: "Movies", href: "/movies", Icon: Clapperboard },
   { label: "Series", href: "/series", Icon: MonitorPlay },
+  { label: "Radio", href: "/radio", Icon: Radio },
   { label: "My List", href: "/my-list", Icon: Bookmark },
 ];
 
@@ -38,7 +39,8 @@ export function DesktopNav({ pathname }: { pathname: string | null }) {
 
 /** Bottom tab bar on phones */
 export function MobileNav({ pathname }: { pathname: string | null }) {
-  const items = [...NAV.slice(0, 4), { label: "Search", href: "/search", Icon: Search }];
+  // Search lives in the header on phones
+  const items = NAV.slice(0, 5);
   return (
     <nav className="fixed inset-x-0 bottom-0 z-100 border-t border-white/10 bg-[rgba(12,12,14,0.92)] pb-[env(safe-area-inset-bottom)] backdrop-blur-xl md:hidden">
       <div className="grid grid-cols-5">
