@@ -9,3 +9,8 @@
 [build.environment]
   # Next.js 16 needs Node 20.9+
   NODE_VERSION = "22"
+
+# Make sure the Next.js runtime is used. Without it, .next is served as plain
+# static files and every page returns 404.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
