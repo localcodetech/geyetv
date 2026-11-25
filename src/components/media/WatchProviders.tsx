@@ -13,7 +13,7 @@ export function WatchProviders({ watch }: { watch: Providers }) {
 
   return (
     <section>
-      <h2 className="mb-4 text-lg font-bold sm:text-xl">Where to watch</h2>
+      <h2 className="mb-4 heading text-xl sm:text-2xl">Where to watch</h2>
       {any ? (
         <div className="flex flex-col gap-5 sm:flex-row sm:flex-wrap sm:gap-10">
           {groups.map(([label, providers]) =>
@@ -30,7 +30,7 @@ export function WatchProviders({ watch }: { watch: Providers }) {
                       width={44}
                       height={44}
                       unoptimized
-                      className="rounded-lg ring-1 ring-white/10"
+                      className="rounded ring-1 ring-line"
                     />
                   ))}
                 </div>

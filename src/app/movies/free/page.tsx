@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function FreeClassicsPage() {
   return (
-    <Suspense fallback={<div className="mx-auto h-[70svh] max-w-350 animate-pulse px-4 pt-10"><div className="size-full rounded-2xl bg-white/5" /></div>}>
+    <Suspense fallback={<div className="mx-auto h-[70svh] max-w-350 animate-pulse px-4 pt-10"><div className="size-full rounded-md bg-panel" /></div>}>
       <FreeClassics />
     </Suspense>
   );
@@ -39,8 +39,8 @@ async function FreeClassics() {
     <div className="pb-12">
       <HeroCarousel items={hero} label="FREE CLASSICS" />
       <div className={`relative z-10 mx-auto max-w-350 px-4 ${hero.length ? "-mt-6" : "pt-10"}`}>
-        <div className="mb-8 flex items-start gap-4 rounded-2xl bg-emerald-500/10 p-5 ring-1 ring-emerald-500/25">
-          <Gift className="mt-0.5 size-6 shrink-0 text-emerald-400" />
+        <div className="mb-8 flex items-start gap-4 border-l-4 border-brand bg-panel p-5">
+          <Gift className="mt-0.5 size-6 shrink-0 text-brand" />
           <div>
             <h1 className="text-xl font-bold">Free classics: watch or download, legally</h1>
             <p className="mt-1 max-w-3xl text-sm text-white/65">

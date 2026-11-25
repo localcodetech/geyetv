@@ -25,18 +25,17 @@ export function ChannelCard({ channel, active, favorite, onSelect }: Props) {
       data-id={channel.id}
       data-active={active || undefined}
       onClick={onSelect}
-      whileHover={{ y: -4 }}
       whileTap={{ scale: 0.97 }}
       transition={{ type: "spring", stiffness: 400, damping: 28 }}
       className="group block w-full cursor-pointer text-left outline-none"
     >
       <div
-        className={`relative overflow-hidden rounded-xl bg-gradient-to-br from-[#26262b] to-[#151518] ring-1 transition-shadow ${
+        className={`relative overflow-hidden rounded bg-gradient-to-br from-[#26262b] to-[#151518] ring-1 transition-shadow ${
           isRadio ? "aspect-square" : "aspect-video"
         } ${
           active
-            ? "ring-2 ring-brand shadow-[0_0_24px_rgba(229,9,20,0.35)]"
-            : "ring-white/10 group-hover:ring-white/30 group-focus-visible:ring-2 group-focus-visible:ring-brand"
+            ? "ring-2 ring-brand"
+            : "ring-line group-hover:ring-white/30 group-focus-visible:ring-2 group-focus-visible:ring-brand"
         }`}
       >
         <div className={`channel-logo absolute inset-0 ${isRadio ? "p-4" : "is-cropped"}`}>
@@ -48,18 +47,18 @@ export function ChannelCard({ channel, active, favorite, onSelect }: Props) {
             sizes="(max-width: 640px) 45vw, 240px"
             // Logos are entered in Supabase and may be on any host; only local ones go through the optimizer
             unoptimized={!src.startsWith("/")}
-            className={`transition-transform duration-300 group-hover:scale-[1.04] ${isRadio ? "size-full rounded-full object-cover" : ""}`}
+            className={` ${isRadio ? "size-full rounded-full object-cover" : ""}`}
             onError={() => setSrc(FALLBACK_IMG)}
           />
         </div>
 
         {active ? (
-          <span className="absolute left-2 top-2 inline-flex items-center gap-1 rounded bg-brand px-1.5 py-0.5 text-[10px] font-bold tracking-wider">
+          <span className="tag absolute left-0 top-2">
             <Equalizer />
             {isRadio ? "ON AIR" : "WATCHING"}
           </span>
         ) : (
-          <span className="absolute left-2 top-2 inline-flex items-center gap-1 rounded bg-black/60 px-1.5 py-0.5 text-[10px] font-bold tracking-wider text-white/80 opacity-0 transition-opacity group-hover:opacity-100">
+          <span className="tag tag-dark absolute left-0 top-2 opacity-0 transition-opacity group-hover:opacity-100">
             <span className="size-1.5 rounded-full bg-brand" />
             LIVE
           </span>

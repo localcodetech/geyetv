@@ -20,14 +20,14 @@ export function LiveNowRow({ title, channels, href }: { title: string; channels:
         const card = (
           <>
             <div
-              className={`relative overflow-hidden rounded-xl bg-linear-to-br from-[#26262b] to-[#151518] ring-1 group-hover:ring-white/30 ${
+              className={`relative overflow-hidden rounded bg-panel ring-1 group-hover:ring-white/30 ${
                 c.type === "radio" ? "aspect-square" : "aspect-video"
-              } ${playing ? "ring-2 ring-brand" : "ring-white/10"}`}
+              } ${playing ? "ring-2 ring-brand" : "ring-line"}`}
             >
               <div className={`channel-logo absolute inset-0 ${c.type === "radio" ? "p-4" : "is-cropped"}`}>
                 <Image src={c.logoUrl} alt="" width={320} height={320} sizes="240px" unoptimized={!c.logoUrl.startsWith("/")} className={c.type === "radio" ? "size-full rounded-full object-cover" : ""} />
               </div>
-              <span className="absolute left-2 top-2 inline-flex items-center gap-1 rounded bg-brand px-1.5 py-0.5 text-[10px] font-bold tracking-wider">
+              <span className="tag absolute left-0 top-2">
                 <span className="size-1.5 animate-pulse rounded-full bg-white" />
                 {c.type === "radio" ? "ON AIR" : "LIVE"}
               </span>
@@ -44,7 +44,7 @@ export function LiveNowRow({ title, channels, href }: { title: string; channels:
         );
 
         return (
-          <motion.div key={c.id} whileHover={{ y: -4 }} transition={{ type: "spring", stiffness: 400, damping: 28 }}>
+          <motion.div key={c.id} transition={{ type: "spring", stiffness: 400, damping: 28 }}>
             {c.type === "radio" ? (
               <button type="button" onClick={() => (radio.station?.id === c.id ? radio.toggle() : radio.play(c))} className="group block w-full text-left" aria-label={`${playing ? "Pause" : "Play"} ${c.title}`}>
                 {card}

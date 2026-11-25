@@ -35,10 +35,10 @@ export function HeroCarousel({ items, label = "TRENDING TODAY" }: { items: Saved
       <AnimatePresence initial={false}>
         <motion.div
           key={`${item.type}-${item.id}`}
-          initial={{ opacity: 0, scale: 1.04 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ opacity: { duration: 0.9 }, scale: { duration: INTERVAL_MS / 1000, ease: "linear" } }}
+          transition={{ duration: 0.9 }}
           className="absolute inset-0 -z-10"
         >
           <Image src={tmdbImage(item.backdropPath, "w1280")!} alt="" fill priority unoptimized className="object-cover object-top" />
@@ -56,15 +56,15 @@ export function HeroCarousel({ items, label = "TRENDING TODAY" }: { items: Saved
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.45, ease: "easeOut" }}
           >
-            <p className="mb-3 flex items-center gap-2 text-xs font-bold tracking-[0.2em] text-brand">
-              {label}
-              <span className="rounded bg-white/10 px-1.5 py-0.5 text-[10px] tracking-wider text-white/80">{item.type === "tv" ? "SERIES" : "MOVIE"}</span>
+            <p className="mb-4 flex items-center gap-3">
+              <span className="tag">{label}</span>
+              <span className="font-display text-sm font-semibold uppercase tracking-wider text-muted">{item.type === "tv" ? "Series" : "Movie"}</span>
             </p>
-            <h1 className="max-w-3xl text-4xl font-extrabold tracking-tight sm:text-6xl">{item.title}</h1>
+            <h1 className="max-w-3xl text-4xl heading sm:text-6xl">{item.title}</h1>
             <div className="mt-3 flex items-center gap-3 text-sm text-white/70">
               {item.rating > 0 && (
                 <span className="inline-flex items-center gap-1">
-                  <Star className="size-4 fill-amber-400 text-amber-400" />
+                  <Star className="size-4 fill-current text-muted" />
                   {item.rating.toFixed(1)}
                 </span>
               )}
@@ -74,7 +74,7 @@ export function HeroCarousel({ items, label = "TRENDING TODAY" }: { items: Saved
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
                 href={mediaHref(item)}
-                className="inline-flex items-center gap-2 rounded-lg bg-brand px-5 py-2.5 font-semibold shadow-[0_8px_24px_rgba(229,9,20,0.35)] transition-colors hover:bg-red-700"
+                className="btn btn-primary"
               >
                 <Info className="size-4" />
                 More info
@@ -94,7 +94,7 @@ export function HeroCarousel({ items, label = "TRENDING TODAY" }: { items: Saved
                 aria-selected={i === index}
                 aria-label={`Show ${it.title}`}
                 onClick={() => setIndex(i)}
-                className="relative h-1 w-10 overflow-hidden rounded-full bg-white/20"
+                className="relative h-1 w-10 overflow-hidden rounded-full bg-line"
               >
                 {i === index && (
                   <motion.span

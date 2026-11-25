@@ -22,12 +22,12 @@ export function CatalogHome({ type }: { type: MediaType }) {
 function CatalogSkeleton() {
   return (
     <div className="animate-pulse pb-12">
-      <div className="h-[68svh] bg-white/[0.03] sm:h-[78svh]" />
+      <div className="h-[68svh] bg-panel sm:h-[78svh]" />
       <div className="mx-auto max-w-350 space-y-4 px-4 pt-8">
-        <div className="h-6 w-48 rounded bg-white/5" />
+        <div className="h-6 w-48 rounded bg-panel" />
         <div className="flex gap-4">
           {Array.from({ length: 7 }, (_, i) => (
-            <div key={i} className="aspect-2/3 w-[36%] shrink-0 rounded-xl bg-white/5 sm:w-40 lg:w-44" />
+            <div key={i} className="aspect-2/3 w-[36%] shrink-0 rounded bg-panel sm:w-40 lg:w-44" />
           ))}
         </div>
       </div>
@@ -58,7 +58,7 @@ async function CatalogContent({ type }: { type: MediaType }) {
         <div className="flex items-center gap-3">
           <Link
             href={browse}
-            className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-black transition-colors hover:bg-white/85"
+            className="inline-flex shrink-0 items-center gap-2 rounded bg-white px-4 py-1.5 text-sm font-semibold text-black transition-colors hover:bg-white/85"
           >
             <SlidersHorizontal className="size-4" />
             Browse all

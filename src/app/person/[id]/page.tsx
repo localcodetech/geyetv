@@ -53,13 +53,13 @@ async function PersonDetails({ params }: Pick<PageProps<"/person/[id]">, "params
   return (
     <article className="mx-auto max-w-350 px-4 pb-12 pt-10">
       <div className="flex flex-col gap-8 md:flex-row">
-        <div className="relative mx-auto aspect-2/3 w-52 shrink-0 overflow-hidden rounded-2xl bg-[#1d1d21] ring-1 ring-white/10 md:mx-0 md:w-72">
+        <div className="relative mx-auto aspect-2/3 w-52 shrink-0 overflow-hidden rounded-md bg-panel ring-1 ring-line md:mx-0 md:w-72">
           {photo ? <Image src={photo} alt={person.name} fill priority unoptimized className="object-cover" /> : <UserRound className="absolute inset-0 m-auto size-16 text-white/20" />}
         </div>
 
         <div className="min-w-0 flex-1 md:pt-4">
-          <p className="mb-2 text-xs font-bold tracking-[0.2em] text-brand">{person.knownFor.toUpperCase()}</p>
-          <h1 className="text-3xl font-extrabold tracking-tight sm:text-5xl">{person.name}</h1>
+          <p className="mb-2 font-display text-sm font-bold uppercase tracking-wider text-brand">{person.knownFor.toUpperCase()}</p>
+          <h1 className="text-3xl heading sm:text-5xl">{person.name}</h1>
           <dl className="mt-5 flex flex-wrap gap-x-10 gap-y-3 text-sm">
             {person.birthday && (
               <div>
@@ -96,7 +96,7 @@ async function PersonDetails({ params }: Pick<PageProps<"/person/[id]">, "params
 
       {person.credits.length > 0 && (
         <section className="mt-12">
-          <h2 className="mb-4 text-lg font-bold sm:text-xl">Known for</h2>
+          <h2 className="mb-4 heading text-xl sm:text-2xl">Known for</h2>
           <div className="grid grid-cols-3 gap-x-3 gap-y-5 sm:grid-cols-4 sm:gap-x-4 md:grid-cols-6 xl:grid-cols-8">
             {person.credits.map((c) => (
               <PosterCard key={`${c.type}-${c.id}`} item={c} subtitle={[c.role, c.year].filter(Boolean).join(" · ")} />

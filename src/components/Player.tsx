@@ -116,7 +116,7 @@ export function Player({ channel }: { channel: Channel }) {
               <button
                 type="button"
                 onClick={retry}
-                className="inline-flex items-center gap-1 rounded-md bg-brand px-3 py-1 text-sm font-medium hover:bg-red-700"
+                className="inline-flex items-center gap-1 rounded-md bg-brand px-3 py-1 text-sm font-medium hover:bg-brand-dark"
               >
                 <RotateCw className="size-3.5" />
                 Retry

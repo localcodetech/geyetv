@@ -34,7 +34,7 @@ export function ScrollRow({ id, title, href, itemClassName = "w-[36%] sm:w-40 lg
       className="scroll-mt-24"
     >
       <div className="mb-3 flex items-end justify-between gap-4">
-        <h2 className="text-lg font-bold tracking-tight sm:text-xl">
+        <h2 className="heading text-xl sm:text-2xl">
           {title}
           {href && (
             <Link href={href} className="ml-3 text-sm font-medium text-brand hover:underline">
@@ -49,7 +49,7 @@ export function ScrollRow({ id, title, href, itemClassName = "w-[36%] sm:w-40 lg
               type="button"
               aria-label={dir < 0 ? "Scroll left" : "Scroll right"}
               onClick={() => page(dir)}
-              className="grid size-8 place-items-center rounded-full bg-white/5 text-white/70 ring-1 ring-white/10 transition hover:bg-white/15 hover:text-white"
+              className="grid size-8 place-items-center rounded-full bg-panel text-white/70 ring-1 ring-line transition hover:bg-line hover:text-white"
             >
               {dir < 0 ? <ChevronLeft className="size-4" /> : <ChevronRight className="size-4" />}
             </button>

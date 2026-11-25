@@ -25,7 +25,7 @@ export function MyListButton({ item }: { item: SavedItem }) {
         })
       }
       aria-pressed={saved}
-      className="inline-flex items-center gap-2 rounded-lg bg-white/10 px-5 py-2.5 font-semibold ring-1 ring-white/15 backdrop-blur transition-colors hover:bg-white/20"
+      className="btn btn-secondary"
     >
       <AnimatePresence mode="wait" initial={false}>
         <motion.span
@@ -35,7 +35,7 @@ export function MyListButton({ item }: { item: SavedItem }) {
           exit={{ scale: 0.5, opacity: 0 }}
           transition={{ duration: 0.18 }}
         >
-          {saved ? <Check className="size-4 text-emerald-400" /> : <Plus className="size-4" />}
+          {saved ? <Check className="size-4" /> : <Plus className="size-4" />}
         </motion.span>
       </AnimatePresence>
       {saved ? "In My List" : "My List"}

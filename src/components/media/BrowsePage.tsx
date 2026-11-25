@@ -18,7 +18,7 @@ const int = (v: string, min: number, max: number) => {
 export function BrowsePage({ type, searchParams }: { type: MediaType; searchParams: SearchParams }) {
   return (
     <div className="mx-auto max-w-350 px-4 pb-12 pt-8">
-      <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">{type === "tv" ? "Browse series" : "Browse movies"}</h1>
+      <h1 className="text-3xl heading sm:text-4xl">{type === "tv" ? "Browse series" : "Browse movies"}</h1>
       <p className="mb-6 mt-1 text-white/50">Filter by genre, year, country and rating.</p>
       {/* Search params are request data, so the results stream in behind this boundary */}
       <Suspense fallback={<GridSkeleton />}>
@@ -100,7 +100,7 @@ async function BrowseResults({ type, searchParams }: { type: MediaType; searchPa
                 href={pageHref(p)}
                 aria-current={p === page ? "page" : undefined}
                 className={`grid size-10 place-items-center rounded-full text-sm font-medium transition-colors ${
-                  p === page ? "bg-brand text-white" : "text-white/70 ring-1 ring-white/15 hover:bg-white/10"
+                  p === page ? "bg-brand text-white" : "text-white/70 ring-1 ring-line hover:bg-raised"
                 }`}
               >
                 {p}
@@ -124,13 +124,13 @@ function pageNumbers(current: number, total: number): (number | null)[] {
 }
 
 function PageLink({ href, disabled, label, children }: { href: string; disabled: boolean; label: string; children: React.ReactNode }) {
-  const cls = "grid size-10 place-items-center rounded-full ring-1 ring-white/15";
+  const cls = "grid size-10 place-items-center rounded-full ring-1 ring-line";
   return disabled ? (
     <span aria-hidden className={`${cls} text-white/20`}>
       {children}
     </span>
   ) : (
-    <Link href={href} aria-label={label} className={`${cls} text-white/70 hover:bg-white/10`}>
+    <Link href={href} aria-label={label} className={`${cls} text-white/70 hover:bg-raised`}>
       {children}
     </Link>
   );
@@ -140,7 +140,7 @@ function GridSkeleton() {
   return (
     <div className="grid animate-pulse grid-cols-3 gap-x-3 gap-y-6 pt-16 sm:grid-cols-4 sm:gap-x-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
       {Array.from({ length: 14 }, (_, i) => (
-        <div key={i} className="aspect-2/3 rounded-xl bg-white/5" />
+        <div key={i} className="aspect-2/3 rounded bg-panel" />
       ))}
     </div>
   );

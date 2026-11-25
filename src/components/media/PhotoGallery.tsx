@@ -36,9 +36,9 @@ export function PhotoGallery({ paths, title = "Photos" }: { paths: string[]; tit
     <>
       <ScrollRow title={title} itemClassName="w-[72%] sm:w-80">
         {paths.map((p, i) => (
-          <motion.button key={p} type="button" whileHover={{ y: -4 }} onClick={() => setOpen(i)} className="group block w-full">
-            <div className="relative aspect-video overflow-hidden rounded-xl bg-[#1d1d21] ring-1 ring-white/10 group-hover:ring-white/30">
-              <Image src={tmdbImage(p, "w780")!} alt="" fill unoptimized className="object-cover transition-transform duration-300 group-hover:scale-105" />
+          <motion.button key={p} type="button" onClick={() => setOpen(i)} className="group block w-full">
+            <div className="relative aspect-video overflow-hidden rounded bg-panel ring-1 ring-line group-hover:ring-white/30">
+              <Image src={tmdbImage(p, "w780")!} alt="" fill unoptimized className="object-cover" />
             </div>
           </motion.button>
         ))}
@@ -65,7 +65,7 @@ export function PhotoGallery({ paths, title = "Photos" }: { paths: string[]; tit
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.2 }}
                     onClick={(e) => e.stopPropagation()}
-                    className="relative aspect-video w-full max-w-6xl overflow-hidden rounded-xl"
+                    className="relative aspect-video w-full max-w-6xl overflow-hidden rounded"
                   >
                     <Image src={tmdbImage(paths[open], "original")!} alt="" fill unoptimized className="object-contain" />
                   </motion.div>
@@ -79,12 +79,12 @@ export function PhotoGallery({ paths, title = "Photos" }: { paths: string[]; tit
                       e.stopPropagation();
                       step(dir);
                     }}
-                    className={`absolute top-1/2 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-white/10 hover:bg-white/20 ${dir < 0 ? "left-4" : "right-4"}`}
+                    className={`absolute top-1/2 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-raised hover:bg-line ${dir < 0 ? "left-4" : "right-4"}`}
                   >
                     {dir < 0 ? <ChevronLeft className="size-6" /> : <ChevronRight className="size-6" />}
                   </button>
                 ))}
-                <button type="button" aria-label="Close" onClick={() => setOpen(null)} className="absolute right-4 top-4 grid size-10 place-items-center rounded-full bg-white/10 hover:bg-white/20">
+                <button type="button" aria-label="Close" onClick={() => setOpen(null)} className="absolute right-4 top-4 grid size-10 place-items-center rounded-full bg-raised hover:bg-line">
                   <X className="size-5" />
                 </button>
                 <p className="absolute bottom-4 text-sm text-white/60">
