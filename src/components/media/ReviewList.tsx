@@ -10,7 +10,7 @@ const PREVIEW_CHARS = 380;
 export function ReviewList({ reviews }: { reviews: Review[] }) {
   return (
     <section>
-      <h2 className="mb-4 text-lg font-bold sm:text-xl">
+      <h2 className="mb-4 heading text-xl sm:text-2xl">
         Reviews <span className="ml-1 text-sm font-normal text-white/40">{reviews.length}</span>
       </h2>
       <div className="grid gap-4 md:grid-cols-2">
@@ -28,7 +28,7 @@ function ReviewCard({ review }: { review: Review }) {
   const text = expanded || !long ? review.content : review.content.slice(0, PREVIEW_CHARS).trimEnd() + "…";
 
   return (
-    <motion.article layout className="rounded-2xl bg-white/[0.04] p-5 ring-1 ring-white/10">
+    <motion.article layout className="rounded-md bg-panel p-5 ring-1 ring-line">
       <header className="mb-3 flex items-center gap-3">
         <span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand/20 font-bold text-brand">{review.author.charAt(0).toUpperCase()}</span>
         <div className="min-w-0 flex-1">
@@ -36,8 +36,8 @@ function ReviewCard({ review }: { review: Review }) {
           <p className="text-xs text-white/40">{new Date(review.createdAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</p>
         </div>
         {review.rating !== null && (
-          <span className="inline-flex items-center gap-1 rounded-md bg-white/10 px-2 py-1 text-sm font-semibold">
-            <Star className="size-3.5 fill-amber-400 text-amber-400" />
+          <span className="inline-flex items-center gap-1 rounded-md bg-raised px-2 py-1 text-sm font-semibold">
+            <Star className="size-3.5 fill-current text-muted" />
             {review.rating}/10
           </span>
         )}

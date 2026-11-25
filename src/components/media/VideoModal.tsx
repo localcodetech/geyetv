@@ -33,7 +33,7 @@ export function VideoModal({ youtubeKey, title, onClose }: { youtubeKey: string 
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="fixed inset-0 z-300 grid place-items-center bg-black/85 p-4 backdrop-blur-sm"
+          className="fixed inset-0 z-300 grid place-items-center bg-black/85 p-4"
           role="dialog"
           aria-label={title}
         >
@@ -49,11 +49,11 @@ export function VideoModal({ youtubeKey, title, onClose }: { youtubeKey: string 
               type="button"
               aria-label="Close video"
               onClick={onClose}
-              className="absolute -top-11 right-0 grid size-9 place-items-center rounded-full bg-white/10 hover:bg-white/20"
+              className="absolute -top-11 right-0 grid size-9 place-items-center rounded-full bg-raised hover:bg-line"
             >
               <X className="size-5" />
             </button>
-            <div className="aspect-video overflow-hidden rounded-xl bg-black ring-1 ring-white/10">
+            <div className="aspect-video overflow-hidden rounded bg-black ring-1 ring-line">
               <iframe
                 src={`https://www.youtube-nocookie.com/embed/${youtubeKey}?autoplay=1&rel=0`}
                 title={title}

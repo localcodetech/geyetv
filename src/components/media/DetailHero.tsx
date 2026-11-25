@@ -42,14 +42,16 @@ export function DetailHero({ item, tagline, genres, certification, meta, credits
 
         <div className="flex flex-col gap-8 md:flex-row">
           {poster && (
-            <div className="relative mx-auto aspect-2/3 w-52 shrink-0 overflow-hidden rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.6)] ring-1 ring-white/10 md:mx-0 md:w-72">
+            <div className="relative mx-auto aspect-2/3 w-52 shrink-0 overflow-hidden rounded-md ring-1 ring-line md:mx-0 md:w-72">
               <Image src={poster} alt={item.title} fill priority unoptimized className="object-cover" />
             </div>
           )}
 
           <div className="min-w-0 flex-1 md:pt-6">
-            <p className="mb-2 text-xs font-bold tracking-[0.2em] text-brand">{item.type === "tv" ? "SERIES" : "MOVIE"}</p>
-            <h1 className="text-3xl font-extrabold tracking-tight sm:text-5xl">
+            <p className="mb-3">
+              <span className="tag">{item.type === "tv" ? "Series" : "Movie"}</span>
+            </p>
+            <h1 className="text-3xl heading sm:text-5xl">
               {item.title}
               {item.year && <span className="ml-3 text-2xl font-normal text-white/40 sm:text-3xl">({item.year})</span>}
             </h1>
@@ -58,8 +60,7 @@ export function DetailHero({ item, tagline, genres, certification, meta, credits
             <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-white/70">
               {item.rating > 0 && (
                 <span className="inline-flex items-center gap-1.5 font-semibold text-white">
-                  <RatingRing value={item.rating} />
-                  <Star className="size-4 fill-amber-400 text-amber-400" />
+                  <Star className="size-4 fill-current text-muted" />
                   {item.rating.toFixed(1)}
                   <span className="font-normal text-white/40">TMDB</span>
                 </span>
@@ -76,7 +77,7 @@ export function DetailHero({ item, tagline, genres, certification, meta, credits
                   <Link
                     key={g.id}
                     href={`${browse}?genre=${g.id}`}
-                    className="rounded-full bg-white/[0.07] px-3 py-1 text-xs font-medium ring-1 ring-white/10 transition-colors hover:bg-brand hover:ring-brand"
+                    className="rounded bg-panel px-3 py-1 text-xs font-medium ring-1 ring-line transition-colors hover:bg-brand hover:ring-brand"
                   >
                     {g.name}
                   </Link>
@@ -105,7 +106,7 @@ export function DetailHero({ item, tagline, genres, certification, meta, credits
                 // Only public-domain / Creative Commons films can be watched here until G-Eye TV licenses others
                 <span
                   title="Not available to stream or download on G-Eye TV yet"
-                  className="inline-flex cursor-not-allowed items-center gap-2 rounded-lg bg-white/5 px-5 py-2.5 font-semibold text-white/35 ring-1 ring-white/10"
+                  className="btn cursor-not-allowed bg-panel text-faint ring-1 ring-line"
                 >
                   <Download className="size-4" />
                   Not on G-Eye TV yet
@@ -116,22 +117,5 @@ export function DetailHero({ item, tagline, genres, certification, meta, credits
         </div>
       </div>
     </section>
-  );
-}
-
-/** Small circular score gauge, green / amber / red by rating */
-function RatingRing({ value }: { value: number }) {
-  const pct = Math.min(value / 10, 1);
-  const color = value >= 7 ? "#22c55e" : value >= 5 ? "#f59e0b" : "#ef4444";
-  const r = 15;
-  const c = 2 * Math.PI * r;
-  return (
-    <svg viewBox="0 0 36 36" className="hidden size-9 -rotate-90 sm:block" aria-hidden>
-      <circle cx="18" cy="18" r={r} fill="#0f0f0f" stroke="rgba(255,255,255,0.12)" strokeWidth="3" />
-      <circle cx="18" cy="18" r={r} fill="none" stroke={color} strokeWidth="3" strokeLinecap="round" strokeDasharray={`${c * pct} ${c}`} />
-      <text x="18" y="18" transform="rotate(90 18 18)" textAnchor="middle" dominantBaseline="central" fill="white" fontSize="11" fontWeight="700">
-        {Math.round(value * 10)}
-      </text>
-    </svg>
   );
 }

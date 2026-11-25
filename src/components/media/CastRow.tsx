@@ -10,9 +10,9 @@ export function CastRow({ cast }: { cast: CastMember[] }) {
     <ScrollRow title="Cast" itemClassName="w-28 sm:w-32">
       {cast.map((c) => (
         <Link key={c.id} href={`/person/${c.id}`} className="group block text-center">
-          <div className="relative mx-auto mb-2 size-24 overflow-hidden rounded-full bg-[#1d1d21] ring-1 ring-white/10 transition group-hover:ring-2 group-hover:ring-brand sm:size-28">
+          <div className="relative mx-auto mb-2 size-24 overflow-hidden rounded-full bg-panel ring-1 ring-line transition group-hover:ring-2 group-hover:ring-brand sm:size-28">
             {c.profilePath ? (
-              <Image src={tmdbImage(c.profilePath, "w185")!} alt={c.name} fill unoptimized className="object-cover transition-transform duration-300 group-hover:scale-105" />
+              <Image src={tmdbImage(c.profilePath, "w185")!} alt={c.name} fill unoptimized className="object-cover" />
             ) : (
               <UserRound className="absolute inset-0 m-auto size-10 text-white/20" />
             )}

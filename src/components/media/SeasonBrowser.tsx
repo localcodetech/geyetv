@@ -33,7 +33,7 @@ export function SeasonBrowser({ seriesId, seasons, initial }: Props) {
   return (
     <section>
       <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
-        <h2 className="text-lg font-bold sm:text-xl">Episodes</h2>
+        <h2 className="heading text-xl sm:text-2xl">Episodes</h2>
         <p className="text-sm text-white/45">
           {seasons.length} season{seasons.length === 1 ? "" : "s"}
         </p>
@@ -45,12 +45,12 @@ export function SeasonBrowser({ seriesId, seasons, initial }: Props) {
             key={s.seasonNumber}
             type="button"
             onClick={() => choose(s.seasonNumber)}
-            className={`relative shrink-0 rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
-              selected === s.seasonNumber ? "text-white" : "text-white/60 ring-1 ring-white/15 hover:text-white"
+            className={`relative shrink-0 rounded px-4 py-1.5 text-sm font-medium transition-colors ${
+              selected === s.seasonNumber ? "text-white" : "text-white/60 ring-1 ring-inset ring-line hover:text-white"
             }`}
           >
             {selected === s.seasonNumber && (
-              <motion.span layoutId="season-pill" className="absolute inset-0 rounded-full bg-brand" transition={{ type: "spring", bounce: 0.2, duration: 0.4 }} />
+              <span className="absolute inset-0 rounded bg-brand" />
             )}
             <span className="relative">{s.seasonNumber === 0 ? "Specials" : `Season ${s.seasonNumber}`}</span>
           </button>
@@ -69,8 +69,8 @@ export function SeasonBrowser({ seriesId, seasons, initial }: Props) {
             {season.overview && <p className="mb-5 max-w-3xl text-sm text-white/60">{season.overview}</p>}
             <ol className="space-y-3">
               {season.episodes.map((e) => (
-                <li key={e.id} className="flex gap-4 rounded-xl bg-white/[0.03] p-3 ring-1 ring-white/[0.06] transition-colors hover:bg-white/[0.06]">
-                  <div className="relative aspect-video w-36 shrink-0 overflow-hidden rounded-lg bg-[#1d1d21] sm:w-56">
+                <li key={e.id} className="flex gap-4 rounded bg-panel p-3 ring-1 ring-white/[0.06] transition-colors hover:bg-panel">
+                  <div className="relative aspect-video w-36 shrink-0 overflow-hidden rounded bg-panel sm:w-56">
                     {e.stillPath ? (
                       <Image src={tmdbImage(e.stillPath, "w300")!} alt="" fill unoptimized className="object-cover" />
                     ) : (
@@ -92,7 +92,7 @@ export function SeasonBrowser({ seriesId, seasons, initial }: Props) {
                       ) : null}
                       {e.rating > 0 && (
                         <span className="inline-flex items-center gap-1">
-                          <Star className="size-3 fill-amber-400 text-amber-400" />
+                          <Star className="size-3 fill-current text-muted" />
                           {e.rating.toFixed(1)}
                         </span>
                       )}

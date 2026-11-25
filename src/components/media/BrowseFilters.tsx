@@ -38,7 +38,7 @@ export function BrowseFilters({ values, genres, countries, sorts, children }: Pr
 
   return (
     <>
-      <div className="sticky top-[57px] z-30 -mx-4 mb-6 border-b border-white/10 bg-surface/90 px-4 py-3 backdrop-blur-xl">
+      <div className="sticky top-[57px] z-30 -mx-4 mb-6 border-b border-white/10 bg-surface px-4 py-3">
         <div className="no-scrollbar flex items-center gap-2 overflow-x-auto">
           <Select label="Genre" value={values.genre} options={genres} onChange={(v) => update("genre", v)} />
           <Select label="Year" value={values.year} options={YEARS.map((y) => ({ value: y, label: y }))} onChange={(v) => update("year", v)} />
@@ -49,7 +49,7 @@ export function BrowseFilters({ values, genres, countries, sorts, children }: Pr
             <button
               type="button"
               onClick={() => startTransition(() => router.push(pathname, { scroll: false }))}
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-full px-3 py-2 text-sm text-white/60 hover:text-white"
+              className="inline-flex shrink-0 items-center gap-1.5 rounded px-3 py-2 text-sm text-white/60 hover:text-white"
             >
               <RotateCcw className="size-3.5" />
               Reset
@@ -77,12 +77,12 @@ function Select({
   allLabel?: string;
 }) {
   return (
-    <label className={`relative shrink-0 rounded-full ring-1 transition-colors ${value ? "bg-brand/15 ring-brand" : "ring-white/15 hover:ring-white/30"}`}>
+    <label className={`relative shrink-0 rounded ring-1 ring-inset transition-colors ${value ? "bg-brand/15 ring-brand" : "ring-line hover:ring-white/30"}`}>
       <span className="sr-only">{label}</span>
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="cursor-pointer appearance-none bg-transparent py-2 pl-4 pr-8 text-sm font-medium text-white outline-none [&>option]:bg-[#1b1b1f]"
+        className="cursor-pointer appearance-none bg-transparent py-2 pl-4 pr-8 text-sm font-medium text-white outline-none [&>option]:bg-panel"
       >
         <option value="">{allLabel ?? `${label}: All`}</option>
         {options.map((o) => (

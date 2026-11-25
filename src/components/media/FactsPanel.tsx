@@ -9,7 +9,7 @@ export function FactsPanel({ facts, companies, companiesLabel }: { facts: Fact[]
   const shown = facts.filter(([, v]) => v !== null && v !== undefined && v !== "" && v !== false);
 
   return (
-    <aside className="rounded-2xl bg-white/[0.04] p-5 ring-1 ring-white/10">
+    <aside className="rounded-md bg-panel p-5 ring-1 ring-line">
       <h2 className="mb-4 text-lg font-bold">Details</h2>
       <dl className="space-y-3 text-sm">
         {shown.map(([label, value]) => (
@@ -30,7 +30,7 @@ export function FactsPanel({ facts, companies, companiesLabel }: { facts: Fact[]
                   <Image src={tmdbImage(c.logoPath, "w185")!} alt={c.name} width={80} height={24} unoptimized className="h-5 w-auto object-contain" />
                 </span>
               ) : (
-                <span key={c.id} className="rounded-md bg-white/10 px-2 py-1 text-xs">
+                <span key={c.id} className="rounded-md bg-raised px-2 py-1 text-xs">
                   {c.name}
                 </span>
               ),

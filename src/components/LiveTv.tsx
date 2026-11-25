@@ -118,9 +118,9 @@ export function LiveTv({ lists }: { lists: ChannelLists }) {
   return (
     <div className="pb-10">
       {/* Hero player. On mobile it stays pinned while browsing channels. */}
-      <section className="sticky top-[57px] z-40 bg-surface/95 backdrop-blur lg:static lg:bg-transparent lg:backdrop-blur-none">
+      <section className="sticky top-[57px] z-40 bg-surface lg:static lg:bg-transparent">
         <div className="mx-auto max-w-[min(1400px,calc((100svh-200px)*16/9))] px-0 sm:px-4 sm:pt-4">
-          <div className="overflow-hidden bg-black ring-white/10 sm:rounded-2xl sm:shadow-[0_20px_60px_rgba(0,0,0,0.6)] sm:ring-1">
+          <div className="overflow-hidden bg-black ring-line sm:rounded-md sm:ring-1">
             {!channel ? (
               <div className="aspect-video w-full bg-black" />
             ) : channel.type === "radio" ? (
@@ -143,7 +143,7 @@ export function LiveTv({ lists }: { lists: ChannelLists }) {
                   className="flex min-w-0 flex-1 items-center gap-3"
                 >
                   <div
-                    className={`channel-logo relative hidden h-11 shrink-0 overflow-hidden rounded-lg bg-[#1d1d21] ring-1 ring-white/10 sm:block ${
+                    className={`channel-logo relative hidden h-11 shrink-0 overflow-hidden rounded bg-panel ring-1 ring-line sm:block ${
                       channel.type === "radio" ? "w-11" : "is-cropped w-20"
                     }`}
                   >
@@ -200,7 +200,7 @@ export function LiveTv({ lists }: { lists: ChannelLists }) {
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search channels and radio"
               autoComplete="off"
-              className="w-full rounded-full bg-white/[0.06] py-2.5 pl-10 pr-9 text-sm text-white outline-none ring-1 ring-white/10 transition placeholder:text-white/40 focus:bg-white/10 focus:ring-brand"
+              className="w-full rounded bg-panel py-2.5 pl-10 pr-9 text-sm text-white outline-none ring-1 ring-line transition placeholder:text-white/40 focus:bg-raised focus:ring-brand"
             />
             {query && (
               <button type="button" aria-label="Clear search" onClick={() => setQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-white/50 hover:text-white">
@@ -218,12 +218,12 @@ export function LiveTv({ lists }: { lists: ChannelLists }) {
                   setFilter(chip);
                   setQuery("");
                 }}
-                className={`relative shrink-0 rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
-                  !q && activeFilter === chip ? "text-white" : "text-white/60 ring-1 ring-white/10 hover:text-white"
+                className={`relative shrink-0 rounded px-4 py-1.5 text-sm font-medium transition-colors ${
+                  !q && activeFilter === chip ? "text-white" : "text-white/60 ring-1 ring-inset ring-line hover:text-white"
                 }`}
               >
                 {!q && activeFilter === chip && (
-                  <motion.span layoutId="chip-pill" className="absolute inset-0 rounded-full bg-brand" transition={{ type: "spring", bounce: 0.2, duration: 0.4 }} />
+                  <span className="absolute inset-0 rounded bg-brand" />
                 )}
                 <span className="relative">{chip}</span>
               </button>
@@ -233,7 +233,7 @@ export function LiveTv({ lists }: { lists: ChannelLists }) {
 
         {results ? (
           <div>
-            <h2 className="mb-4 text-lg font-bold sm:text-xl">
+            <h2 className="mb-4 heading text-xl sm:text-2xl">
               {q ? `Results for "${query.trim()}"` : activeFilter}
               <span className="ml-2 text-sm font-normal text-white/40">{results.length}</span>
             </h2>
@@ -274,7 +274,7 @@ export function LiveTv({ lists }: { lists: ChannelLists }) {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 16 }}
-              className="rounded-full bg-white px-4 py-2 text-sm font-medium text-black shadow-lg"
+              className="rounded bg-white px-4 py-2 text-sm font-medium text-black"
             >
               {toast}
             </motion.div>
@@ -293,7 +293,7 @@ function IconButton({ label, onClick, children }: { label: string; onClick: () =
       title={label}
       onClick={onClick}
       whileTap={{ scale: 0.9 }}
-      className="grid size-9 place-items-center rounded-full bg-white/[0.07] text-white/80 ring-1 ring-white/10 transition-colors hover:bg-white/15 hover:text-white"
+      className="grid size-9 place-items-center rounded-full bg-panel text-white/80 ring-1 ring-line transition-colors hover:bg-line hover:text-white"
     >
       {children}
     </motion.button>

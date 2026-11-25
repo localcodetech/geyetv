@@ -126,7 +126,7 @@ async function SeriesDetails({ params }: Pick<PageProps<"/series/[id]">, "params
 
 function NextEpisode({ episode }: { episode: EpisodeSummary }) {
   return (
-    <div className="flex items-center gap-4 rounded-2xl bg-brand/10 p-4 ring-1 ring-brand/30">
+    <div className="flex items-center gap-4 rounded-md bg-brand/10 p-4 ring-1 ring-brand/30">
       <CalendarClock className="size-8 shrink-0 text-brand" />
       <div>
         <p className="text-xs font-bold uppercase tracking-wider text-brand">Next episode</p>

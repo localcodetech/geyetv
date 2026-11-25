@@ -10,8 +10,8 @@ export function GenreChips({ type, genres, activeId }: { type: MediaType; genres
         <Link
           key={g.id}
           href={`${base}?genre=${g.id}`}
-          className={`shrink-0 rounded-full px-4 py-1.5 text-sm font-medium ring-1 transition-colors ${
-            g.id === activeId ? "bg-brand text-white ring-brand" : "text-white/70 ring-white/15 hover:bg-white/10 hover:text-white"
+          className={`shrink-0 rounded px-4 py-1.5 text-sm font-medium ring-1 ring-inset transition-colors ${
+            g.id === activeId ? "bg-brand text-white ring-brand" : "text-white/70 ring-line hover:bg-raised hover:text-white"
           }`}
         >
           {g.name}

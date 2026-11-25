@@ -16,8 +16,6 @@ const SECTIONS = [
   { href: "/radio", label: "Radio", sub: "stations", Icon: Radio },
 ];
 
-// Colourful tiles for "Browse by genre"
-const GENRE_COLORS = ["from-rose-600", "from-amber-500", "from-emerald-600", "from-sky-600", "from-violet-600", "from-fuchsia-600", "from-orange-600", "from-teal-600"];
 
 type Catalog = { hero: MediaSummary[]; rows: MediaRow[]; genres: { id: number; name: string }[] };
 
@@ -58,8 +56,8 @@ function HomeView({ channels, catalog: { hero, rows, genres }, withCatalog = fal
         <HeroCarousel items={hero} />
       ) : (
         <section className="mx-auto max-w-350 px-4 pb-6 pt-16">
-          <p className="mb-3 text-xs font-bold tracking-[0.2em] text-brand">WELCOME TO G-EYE TV</p>
-          <h1 className="max-w-3xl text-4xl font-extrabold tracking-tight sm:text-6xl">Live TV, radio, movies and series in one place.</h1>
+          <p className="mb-3 font-display text-sm font-bold uppercase tracking-wider text-brand">WELCOME TO G-EYE TV</p>
+          <h1 className="max-w-3xl text-4xl heading sm:text-6xl">Live TV, radio, movies and series in one place.</h1>
         </section>
       )}
 
@@ -70,9 +68,9 @@ function HomeView({ channels, catalog: { hero, rows, genres }, withCatalog = fal
             <Link
               key={href}
               href={href}
-              className="group flex items-center gap-3 rounded-2xl bg-white/[0.05] p-4 ring-1 ring-white/10 backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/[0.09] hover:ring-brand/60"
+              className="group flex items-center gap-3 rounded-md bg-panel p-4 ring-1 ring-line transition hover:-translate-y-0.5 hover:bg-raised hover:ring-brand/60"
             >
-              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-brand/15 text-brand transition-colors group-hover:bg-brand group-hover:text-white">
+              <span className="grid size-11 shrink-0 place-items-center rounded bg-brand/15 text-brand transition-colors group-hover:bg-brand group-hover:text-white">
                 <Icon className="size-5" />
               </span>
               <span className="min-w-0">
@@ -97,13 +95,13 @@ function HomeView({ channels, catalog: { hero, rows, genres }, withCatalog = fal
 
         {genres.length > 0 && (
           <section>
-            <h2 className="mb-3 text-lg font-bold tracking-tight sm:text-xl">Browse movies by genre</h2>
+            <h2 className="mb-3 heading text-xl sm:text-2xl">Browse movies by genre</h2>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-6">
-              {genres.slice(0, 12).map((g, i) => (
+              {genres.slice(0, 12).map((g) => (
                 <Link
                   key={g.id}
                   href={`/movies/browse?genre=${g.id}`}
-                  className={`relative overflow-hidden rounded-xl bg-linear-to-br ${GENRE_COLORS[i % GENRE_COLORS.length]} to-[#151518] px-4 py-5 font-bold ring-1 ring-white/10 transition hover:-translate-y-0.5 hover:ring-white/40`}
+                  className="heading border-l-4 border-brand bg-panel px-4 py-5 text-lg transition-colors hover:bg-raised"
                 >
                   {g.name}
                 </Link>
