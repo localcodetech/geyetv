@@ -12,7 +12,7 @@ export function MyListView() {
 
   return (
     <>
-      <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">My List</h1>
+      <h1 className="text-3xl heading sm:text-4xl">My List</h1>
       <p className="mb-8 mt-1 text-white/50">Movies and series you&apos;ve saved on this device.</p>
 
       {items.length ? (
@@ -32,7 +32,7 @@ export function MyListView() {
                   type="button"
                   aria-label={`Remove ${item.title} from My List`}
                   onClick={() => toggleSaved(item)}
-                  className="absolute right-2 top-2 grid size-7 place-items-center rounded-full bg-black/75 opacity-100 ring-1 ring-white/20 transition hover:bg-brand sm:opacity-0 sm:group-hover/item:opacity-100"
+                  className="absolute right-2 top-2 grid size-7 place-items-center rounded-full bg-black/75 opacity-100 ring-1 ring-line transition hover:bg-brand sm:opacity-0 sm:group-hover/item:opacity-100"
                 >
                   <X className="size-4" />
                 </button>
@@ -41,15 +41,15 @@ export function MyListView() {
           </AnimatePresence>
         </motion.div>
       ) : (
-        <div className="grid place-items-center rounded-2xl bg-white/[0.03] px-6 py-20 text-center ring-1 ring-white/10">
+        <div className="grid place-items-center rounded-md bg-panel px-6 py-20 text-center ring-1 ring-line">
           <Bookmark className="mb-4 size-10 text-brand" />
           <p className="text-lg font-semibold">Your list is empty</p>
           <p className="mt-1 max-w-sm text-white/50">Tap &ldquo;My List&rdquo; on any movie or series to save it here.</p>
           <div className="mt-6 flex gap-3">
-            <Link href="/movies" className="rounded-lg bg-brand px-5 py-2.5 font-semibold hover:bg-red-700">
+            <Link href="/movies" className="btn btn-primary">
               Browse movies
             </Link>
-            <Link href="/series" className="rounded-lg bg-white/10 px-5 py-2.5 font-semibold ring-1 ring-white/15 hover:bg-white/20">
+            <Link href="/series" className="btn btn-secondary">
               Browse series
             </Link>
           </div>

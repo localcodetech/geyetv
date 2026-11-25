@@ -6,6 +6,7 @@ import { ActiveMobileNav, MobileNav } from "@/components/NavLinks";
 import { RadioProvider } from "@/components/radio/RadioProvider";
 import { MiniPlayer } from "@/components/radio/MiniPlayer";
 import { getChannels } from "@/lib/channels";
+import { barlow, barlowCondensed } from "./fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -18,7 +19,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   const { radio } = await getChannels();
 
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang="en" className={`${barlow.variable} ${barlowCondensed.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         {/* The radio keeps playing across pages, with a mini player at the bottom */}
         <RadioProvider stations={radio}>

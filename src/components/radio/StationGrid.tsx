@@ -17,7 +17,7 @@ export function StationGrid() {
 
   return (
     <section>
-      <h2 className="mb-4 text-lg font-bold sm:text-xl">
+      <h2 className="mb-4 heading text-xl sm:text-2xl">
         All stations <span className="ml-1 text-sm font-normal text-white/40">{radio.stations.length}</span>
       </h2>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -29,14 +29,13 @@ export function StationGrid() {
             <motion.button
               key={s.id}
               type="button"
-              whileHover={{ y: -3 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => (current ? radio.toggle() : radio.play(s))}
-              className={`flex items-center gap-4 rounded-2xl p-3 text-left ring-1 transition-colors ${
-                current ? "bg-brand/15 ring-brand" : "bg-white/[0.04] ring-white/10 hover:bg-white/[0.08]"
+              className={`flex items-center gap-4 rounded-md p-3 text-left ring-1 transition-colors ${
+                current ? "bg-brand/15 ring-brand" : "bg-panel ring-line hover:bg-raised"
               }`}
             >
-              <div className="relative size-16 shrink-0 overflow-hidden rounded-xl ring-1 ring-white/10">
+              <div className="relative size-16 shrink-0 overflow-hidden rounded ring-1 ring-line">
                 <StationArt station={s} className="size-full" />
                 {playing && (
                   <span className="absolute inset-0 flex items-end justify-center gap-[3px] bg-black/40 pb-2" aria-hidden>

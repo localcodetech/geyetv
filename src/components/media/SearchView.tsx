@@ -56,7 +56,7 @@ export function SearchView() {
           placeholder="Search movies, series and people"
           autoComplete="off"
           autoFocus
-          className="w-full rounded-full bg-white/[0.06] py-4 pl-14 pr-12 text-lg text-white outline-none ring-1 ring-white/10 transition placeholder:text-white/40 focus:bg-white/10 focus:ring-brand"
+          className="w-full rounded bg-panel py-4 pl-14 pr-12 text-lg text-white outline-none ring-1 ring-line transition placeholder:text-white/40 focus:bg-raised focus:ring-brand"
         />
         <span className="absolute right-5 top-1/2 -translate-y-1/2 text-white/50">
           {loading ? (
@@ -81,7 +81,7 @@ export function SearchView() {
               <div className="no-scrollbar -mx-4 flex gap-4 overflow-x-auto px-4">
                 {done.people.map((p) => (
                   <Link key={p.id} href={`/person/${p.id}`} className="group w-24 shrink-0 text-center">
-                    <div className="relative mx-auto mb-2 size-20 overflow-hidden rounded-full bg-[#1d1d21] ring-1 ring-white/10 group-hover:ring-2 group-hover:ring-brand">
+                    <div className="relative mx-auto mb-2 size-20 overflow-hidden rounded-full bg-panel ring-1 ring-line group-hover:ring-2 group-hover:ring-brand">
                       {p.profilePath ? (
                         <Image src={tmdbImage(p.profilePath, "w185")!} alt={p.name} fill unoptimized className="object-cover" />
                       ) : (
@@ -104,9 +104,9 @@ export function SearchView() {
                   key={f}
                   type="button"
                   onClick={() => setFilter(f)}
-                  className={`relative rounded-full px-3.5 py-1 text-sm font-medium ${filter === f ? "text-white" : "text-white/60 ring-1 ring-white/15 hover:text-white"}`}
+                  className={`relative rounded px-3.5 py-1 text-sm font-medium ${filter === f ? "text-white" : "text-white/60 ring-1 ring-inset ring-line hover:text-white"}`}
                 >
-                  {filter === f && <motion.span layoutId="search-filter" className="absolute inset-0 rounded-full bg-brand" />}
+                  {filter === f && <span className="absolute inset-0 rounded bg-brand" />}
                   <span className="relative">
                     {f === "all" ? "All" : f === "movie" ? "Movies" : "Series"} {counts[f]}
                   </span>

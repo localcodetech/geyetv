@@ -8,7 +8,7 @@ export function TmdbNotice({ reason }: { reason: "missing-key" | "unreachable" }
       <h1 className="mb-2 text-2xl font-bold">Movies and series are coming soon</h1>
       {reason === "missing-key" ? (
         <p className="text-white/60">
-          Add <code className="rounded bg-white/10 px-1.5">TMDB_READ_TOKEN</code> to <code className="rounded bg-white/10 px-1.5">.env.local</code> (or
+          Add <code className="rounded bg-raised px-1.5">TMDB_READ_TOKEN</code> to <code className="rounded bg-raised px-1.5">.env.local</code> (or
           the hosting environment) to load the catalog from The Movie Database.
         </p>
       ) : (

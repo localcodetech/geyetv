@@ -52,7 +52,7 @@ export function FreeWatchActions({ title, stream, downloads, licenseLabel, licen
         type="button"
         whileTap={{ scale: 0.96 }}
         onClick={() => setPlaying(true)}
-        className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-2.5 font-bold text-black shadow-[0_8px_24px_rgba(255,255,255,0.15)] transition-colors hover:bg-white/85"
+        className="btn btn-primary"
       >
         <Play className="size-4 fill-current" />
         Watch free
@@ -63,7 +63,7 @@ export function FreeWatchActions({ title, stream, downloads, licenseLabel, licen
           type="button"
           onClick={() => setMenuOpen((o) => !o)}
           aria-expanded={menuOpen}
-          className="inline-flex items-center gap-2 rounded-lg bg-white/10 px-5 py-2.5 font-semibold ring-1 ring-white/15 backdrop-blur transition-colors hover:bg-white/20"
+          className="btn btn-secondary"
         >
           <Download className="size-4" />
           Download
@@ -76,7 +76,7 @@ export function FreeWatchActions({ title, stream, downloads, licenseLabel, licen
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.15 }}
-              className="absolute left-0 top-full z-40 mt-2 w-72 overflow-hidden rounded-xl bg-[#1b1b1f] shadow-2xl ring-1 ring-white/10"
+              className="absolute left-0 top-full z-40 mt-2 w-72 overflow-hidden rounded bg-panel ring-1 ring-line"
             >
               {downloads.map((f) => (
                 <a
@@ -85,7 +85,7 @@ export function FreeWatchActions({ title, stream, downloads, licenseLabel, licen
                   download
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center justify-between gap-3 px-4 py-3 text-sm transition-colors hover:bg-white/10"
+                  className="flex items-center justify-between gap-3 px-4 py-3 text-sm transition-colors hover:bg-raised"
                 >
                   <span className="font-semibold">{f.label} MP4</span>
                   <span className="text-white/50">{f.sizeBytes ? formatSize(f.sizeBytes) : ""}</span>
@@ -103,7 +103,7 @@ export function FreeWatchActions({ title, stream, downloads, licenseLabel, licen
         </AnimatePresence>
       </div>
 
-      <a href={licenseUrl} target="_blank" rel="noreferrer" className="self-center rounded-md bg-emerald-500/15 px-2.5 py-1 text-xs font-semibold text-emerald-300 ring-1 ring-emerald-500/30">
+      <a href={licenseUrl} target="_blank" rel="noreferrer" className="self-center text-sm text-muted underline-offset-4 hover:text-white hover:underline">
         {licenseLabel} · free to watch
       </a>
 
@@ -121,7 +121,7 @@ export function FreeWatchActions({ title, stream, downloads, licenseLabel, licen
               >
                 <div className="flex items-center justify-between gap-4 px-4 py-3">
                   <p className="truncate font-semibold">{title}</p>
-                  <button type="button" aria-label="Close player" onClick={() => setPlaying(false)} className="grid size-10 place-items-center rounded-full bg-white/10 hover:bg-white/20">
+                  <button type="button" aria-label="Close player" onClick={() => setPlaying(false)} className="grid size-10 place-items-center rounded-full bg-raised hover:bg-line">
                     <X className="size-5" />
                   </button>
                 </div>

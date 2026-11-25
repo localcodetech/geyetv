@@ -23,7 +23,7 @@ export function StationArt({ station, className = "", priority = false }: { stat
       className={`object-cover ${className}`}
     />
   ) : (
-    <div className={`grid place-items-center bg-[#1d1d21] ${className}`}>
+    <div className={`grid place-items-center bg-panel ${className}`}>
       <Radio className="size-1/3 text-white/30" />
     </div>
   );
@@ -43,51 +43,36 @@ export function RadioPlayer({ fallback }: { fallback?: Channel }) {
   const VolumeIcon = radio.muted || radio.volume === 0 ? VolumeX : radio.volume < 0.5 ? Volume1 : Volume2;
 
   return (
-    <section className="relative isolate overflow-hidden rounded-3xl bg-[#121215] ring-1 ring-white/10">
-      {/* Blurred station artwork as the backdrop */}
-      <AnimatePresence initial={false}>
-        <motion.div key={station.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.8 }} className="absolute inset-0 -z-10">
-          <StationArt station={station} className="size-full scale-125 opacity-50 blur-3xl saturate-150" />
-        </motion.div>
-      </AnimatePresence>
-      <div className="absolute inset-0 -z-10 bg-linear-to-b from-black/30 via-black/50 to-[#121215]" />
+    <section className="overflow-hidden rounded-md border-t-4 border-brand bg-panel">
 
       <div className="grid items-center gap-8 p-6 sm:p-10 md:grid-cols-[minmax(0,320px)_1fr]">
-        {/* Artwork with a pulsing ring while on air */}
         <div className="relative mx-auto w-56 sm:w-72 md:w-full">
-          {playing && (
-            <motion.span
-              className="absolute -inset-3 rounded-[2rem] ring-2 ring-brand/60"
-              animate={{ opacity: [0.7, 0, 0.7], scale: [1, 1.06, 1] }}
-              transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-            />
-          )}
           <motion.div
             key={station.id}
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: playing ? 1 : 0.96, opacity: 1 }}
-            transition={{ type: "spring", stiffness: 200, damping: 20 }}
-            className="relative aspect-square overflow-hidden rounded-3xl shadow-[0_30px_80px_rgba(0,0,0,0.6)] ring-1 ring-white/15"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            className="relative aspect-square overflow-hidden rounded ring-1 ring-line"
           >
             <StationArt station={station} className="size-full" priority />
           </motion.div>
         </div>
 
         <div className="min-w-0">
-          <div className="flex flex-wrap items-center gap-2 text-[11px] font-bold tracking-widest">
-            <span className={`inline-flex items-center gap-1.5 rounded px-2 py-1 ${np?.isLive ? "bg-brand" : "bg-white/10"}`}>
-              <span className={`size-1.5 rounded-full ${playing ? "animate-pulse bg-white" : "bg-white/60"}`} />
-              {np?.isLive ? `LIVE${np.streamer ? ` · ${np.streamer.toUpperCase()}` : ""}` : "ON AIR"}
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="tag">
+              <span className={`size-1.5 rounded-full bg-white ${playing ? "animate-pulse" : "opacity-60"}`} />
+              {np?.isLive ? `Live${np.streamer ? ` · ${np.streamer}` : ""}` : "On air"}
             </span>
             {np && np.listeners > 0 && (
-              <span className="inline-flex items-center gap-1 rounded bg-white/10 px-2 py-1 tracking-normal">
+              <span className="inline-flex items-center gap-1 text-sm text-muted">
                 <Users className="size-3" />
                 {np.listeners} listening
               </span>
             )}
           </div>
 
-          <h1 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-5xl">{station.title}</h1>
+          <h1 className="mt-3 text-3xl heading sm:text-5xl">{station.title}</h1>
 
           <AnimatePresence mode="wait">
             <motion.div
@@ -100,7 +85,7 @@ export function RadioPlayer({ fallback }: { fallback?: Channel }) {
             >
               {np ? (
                 <>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-white/45">Now playing</p>
+                  <p className="font-display text-sm font-semibold uppercase tracking-wider text-muted">Now playing</p>
                   <p className="truncate text-lg font-semibold sm:text-xl">{np.song.title}</p>
                   {np.song.artist && <p className="truncate text-white/65">{np.song.artist}</p>}
                 </>
@@ -113,7 +98,7 @@ export function RadioPlayer({ fallback }: { fallback?: Channel }) {
           {progress && (
             <div className="mt-4 flex items-center gap-3 text-xs tabular-nums text-white/50">
               <span>{formatClock(progress.elapsed)}</span>
-              <div className="h-1 flex-1 overflow-hidden rounded-full bg-white/15">
+              <div className="h-1 flex-1 overflow-hidden rounded-full bg-line">
                 <div className="h-full rounded-full bg-white/80 transition-[width] duration-1000 ease-linear" style={{ width: `${(progress.elapsed / progress.duration) * 100}%` }} />
               </div>
               <span>{formatClock(progress.duration)}</span>
@@ -132,7 +117,7 @@ export function RadioPlayer({ fallback }: { fallback?: Channel }) {
               aria-label={playing ? "Pause" : "Play"}
               whileTap={{ scale: 0.92 }}
               onClick={() => (isCurrent ? radio.toggle() : radio.play(station))}
-              className="grid size-16 place-items-center rounded-full bg-brand shadow-[0_10px_30px_rgba(229,9,20,0.45)] transition-colors hover:bg-red-700"
+              className="grid size-16 place-items-center rounded-full bg-brand transition-colors hover:bg-brand-dark"
             >
               {status === "loading" ? (
                 <LoaderCircle className="size-7 animate-spin" />
@@ -188,7 +173,7 @@ function ControlButton({ label, onClick, children }: { label: string; onClick: (
       title={label}
       whileTap={{ scale: 0.9 }}
       onClick={onClick}
-      className="grid size-12 place-items-center rounded-full bg-white/10 ring-1 ring-white/15 transition-colors hover:bg-white/20"
+      className="grid size-12 place-items-center rounded-full bg-raised ring-1 ring-line transition-colors hover:bg-line"
     >
       {children}
     </motion.button>
